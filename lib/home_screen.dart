@@ -183,63 +183,65 @@ class _HomeScreenState extends State<HomeScreen> {
             currentDirection = Snake_Direction.LEFT;
           }
         },
-        child: Column(
-          children: [
-            Expanded(
-              child: Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: "Current Score: ",
-                    style: const TextStyle(
-                      fontSize: 32,
+        child: Material(
+          child: Column(
+            children: [
+              Expanded(
+                child: Center(
+                  child: Text.rich(
+                    TextSpan(
+                      text: "Current Score: ",
+                      style: const TextStyle(
+                        fontSize: 32,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "$currentScore",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
                     ),
-                    children: [
-                      TextSpan(
-                        text: "$currentScore",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: GridView.builder(
-                  itemCount: totalNumberOfSquares,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: rowSize,
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    if (snakePos.contains(index)) {
-                      return const SnakePixel();
-                    } else if (foodPos == index) {
-                      return const FoodPixel();
-                    } else {
-                      return const BlankPixel();
-                    }
-                  },
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: MaterialButton(
-                  color: Colors.deepPurple,
-                  onPressed: gameHasStarted ? null : startGame,
-                  child: const Text(
-                    "Play",
-                    style: TextStyle(),
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: GridView.builder(
+                    itemCount: totalNumberOfSquares,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: rowSize,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      if (snakePos.contains(index)) {
+                        return const SnakePixel();
+                      } else if (foodPos == index) {
+                        return const FoodPixel();
+                      } else {
+                        return const BlankPixel();
+                      }
+                    },
                   ),
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Center(
+                  child: MaterialButton(
+                    color: Colors.deepPurple,
+                    onPressed: gameHasStarted ? null : startGame,
+                    child: const Text(
+                      "Play",
+                      style: TextStyle(),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
